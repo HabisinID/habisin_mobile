@@ -12,9 +12,7 @@ class AdminSummaryPage extends StatelessWidget {
       title: 'Ringkasan Admin',
       owner: 'Damica Adreeza Ramadhan',
       standalone: false,
-      endpoints: [
-        'GET /api/admin/summary',
-      ],
+      endpoints: ['GET /api/admin/summary'],
     );
   }
 }

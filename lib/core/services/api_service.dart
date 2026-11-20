@@ -1,4 +1,5 @@
 import 'dart:convert';
+
 import 'package:http/http.dart' as http;
 
 import '../../modules/catalog/models/listing.dart';
@@ -9,7 +10,8 @@ class ApiService {
   ApiService._();
   static final ApiService instance = ApiService._();
 
-  static const String baseUrl = 'https://rozan-laudzai-habisin-backend.pws.cs.ui.ac.id/api';
+  static const String baseUrl =
+      'https://rozan-laudzai-habisin-backend.pws.cs.ui.ac.id/api';
 
   // Cookie jar sederhana untuk menyimpan sesi dan CSRF token
   final Map<String, String> _cookies = {};
@@ -152,7 +154,9 @@ class ApiService {
     if (response.statusCode == 200) {
       final dynamic body = jsonDecode(response.body);
       if (body is List) {
-        return body.map((item) => Listing.fromJson(item as Map<String, dynamic>)).toList();
+        return body
+            .map((item) => Listing.fromJson(item as Map<String, dynamic>))
+            .toList();
       }
       return [];
     } else if (response.statusCode == 401 || response.statusCode == 403) {
@@ -176,14 +180,19 @@ class ApiService {
     _updateCookies(response);
 
     if (response.statusCode == 200 || response.statusCode == 201) {
-      return Listing.fromJson(jsonDecode(response.body) as Map<String, dynamic>);
+      return Listing.fromJson(
+        jsonDecode(response.body) as Map<String, dynamic>,
+      );
     } else {
       throw _parseError(response, 'Gagal menambah listing makanan baru.');
     }
   }
 
   /// Memperbarui listing makanan (Mitra)
-  Future<Listing> updatePartnerListing(int id, Map<String, dynamic> data) async {
+  Future<Listing> updatePartnerListing(
+    int id,
+    Map<String, dynamic> data,
+  ) async {
     await ensureCsrfToken();
     final uri = Uri.parse('$baseUrl/partner/listings/$id');
     final response = await http.patch(
@@ -194,7 +203,9 @@ class ApiService {
     _updateCookies(response);
 
     if (response.statusCode == 200) {
-      return Listing.fromJson(jsonDecode(response.body) as Map<String, dynamic>);
+      return Listing.fromJson(
+        jsonDecode(response.body) as Map<String, dynamic>,
+      );
     } else {
       throw _parseError(response, 'Gagal memperbarui listing makanan.');
     }
@@ -204,7 +215,10 @@ class ApiService {
   Future<void> deletePartnerListing(int id) async {
     await ensureCsrfToken();
     final uri = Uri.parse('$baseUrl/partner/listings/$id');
-    final response = await http.delete(uri, headers: _buildHeaders(isJson: false));
+    final response = await http.delete(
+      uri,
+      headers: _buildHeaders(isJson: false),
+    );
     _updateCookies(response);
 
     if (response.statusCode != 200 && response.statusCode != 204) {
@@ -216,7 +230,10 @@ class ApiService {
   Future<void> markListingSoldOut(int id) async {
     await ensureCsrfToken();
     final uri = Uri.parse('$baseUrl/partner/listings/$id/sold-out');
-    final response = await http.post(uri, headers: _buildHeaders(isJson: false));
+    final response = await http.post(
+      uri,
+      headers: _buildHeaders(isJson: false),
+    );
     _updateCookies(response);
 
     if (response.statusCode != 200 && response.statusCode != 204) {
@@ -228,7 +245,10 @@ class ApiService {
   Future<void> undoListingSoldOut(int id) async {
     await ensureCsrfToken();
     final uri = Uri.parse('$baseUrl/partner/listings/$id/undo-sold-out');
-    final response = await http.post(uri, headers: _buildHeaders(isJson: false));
+    final response = await http.post(
+      uri,
+      headers: _buildHeaders(isJson: false),
+    );
     _updateCookies(response);
 
     if (response.statusCode != 200 && response.statusCode != 204) {
@@ -250,7 +270,9 @@ class ApiService {
         if (body['error'] != null) {
           return Exception(body['error'].toString());
         }
-        final messages = body.values.map((v) => v is List ? v.join(', ') : v.toString()).join('\n');
+        final messages = body.values
+            .map((v) => v is List ? v.join(', ') : v.toString())
+            .join('\n');
         if (messages.isNotEmpty) {
           return Exception(messages);
         }

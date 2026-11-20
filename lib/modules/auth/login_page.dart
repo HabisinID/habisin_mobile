@@ -32,10 +32,19 @@ class LoginPage extends StatelessWidget {
           _Link(Icons.person_add_alt, 'Daftar akun', AppRoutes.register),
           const SizedBox(height: 8),
           if (role == Role.pembeli)
-            _Link(Icons.rate_review_outlined, 'Ulasan & Komplain saya', AppRoutes.review),
-          if (role == Role.mitra) _Link(Icons.store_outlined, 'Profil Toko', AppRoutes.store),
+            _Link(
+              Icons.rate_review_outlined,
+              'Ulasan & Komplain saya',
+              AppRoutes.review,
+            ),
+          if (role == Role.mitra)
+            _Link(Icons.store_outlined, 'Profil Toko', AppRoutes.store),
           const SizedBox(height: 8),
-          _Link(Icons.palette_outlined, 'Galeri komponen (dev)', AppRoutes.components),
+          _Link(
+            Icons.palette_outlined,
+            'Galeri komponen (dev)',
+            AppRoutes.components,
+          ),
           const SizedBox(height: 16),
           const Text('Tema'),
           const SizedBox(height: 8),
@@ -43,9 +52,21 @@ class LoginPage extends StatelessWidget {
             valueListenable: themeMode,
             builder: (_, mode, _) => SegmentedButton<ThemeMode>(
               segments: const [
-                ButtonSegment(value: ThemeMode.system, icon: Icon(Icons.brightness_auto_outlined), label: Text('Sistem')),
-                ButtonSegment(value: ThemeMode.light, icon: Icon(Icons.light_mode_outlined), label: Text('Terang')),
-                ButtonSegment(value: ThemeMode.dark, icon: Icon(Icons.dark_mode_outlined), label: Text('Gelap')),
+                ButtonSegment(
+                  value: ThemeMode.system,
+                  icon: Icon(Icons.brightness_auto_outlined),
+                  label: Text('Sistem'),
+                ),
+                ButtonSegment(
+                  value: ThemeMode.light,
+                  icon: Icon(Icons.light_mode_outlined),
+                  label: Text('Terang'),
+                ),
+                ButtonSegment(
+                  value: ThemeMode.dark,
+                  icon: Icon(Icons.dark_mode_outlined),
+                  label: Text('Gelap'),
+                ),
               ],
               selected: {mode},
               onSelectionChanged: (s) => themeMode.value = s.first,
@@ -81,11 +102,11 @@ class _Link extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Card(
-        child: ListTile(
-          leading: Icon(icon),
-          title: Text(label),
-          trailing: const Icon(Icons.chevron_right),
-          onTap: () => Navigator.pushNamed(context, route),
-        ),
-      );
+    child: ListTile(
+      leading: Icon(icon),
+      title: Text(label),
+      trailing: const Icon(Icons.chevron_right),
+      onTap: () => Navigator.pushNamed(context, route),
+    ),
+  );
 }

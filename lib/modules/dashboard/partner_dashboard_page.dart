@@ -12,10 +12,7 @@ class PartnerDashboardPage extends StatelessWidget {
       title: 'Dasbor Statistik',
       owner: 'Raihan Daffa Aprilianda',
       standalone: false,
-      endpoints: [
-        'GET /api/partner/dashboard',
-        'GET /api/dashboard',
-      ],
+      endpoints: ['GET /api/partner/dashboard', 'GET /api/dashboard'],
     );
   }
 }

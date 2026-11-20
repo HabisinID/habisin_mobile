@@ -22,20 +22,48 @@ typedef _Tab = ({String label, IconData icon, Widget page});
 const Map<Role, List<_Tab>> _tabs = {
   Role.pembeli: [
     (label: 'Jelajahi', icon: Icons.map_outlined, page: ExplorePage()),
-    (label: 'Pesanan', icon: Icons.receipt_long_outlined, page: OrderListPage()),
+    (
+      label: 'Pesanan',
+      icon: Icons.receipt_long_outlined,
+      page: OrderListPage(),
+    ),
     (label: 'Akun', icon: Icons.person_outline, page: LoginPage()),
   ],
   Role.mitra: [
-    (label: 'Dasbor', icon: Icons.dashboard_outlined, page: PartnerDashboardPage()),
-    (label: 'Listing', icon: Icons.format_list_bulleted, page: PartnerListingsPage()),
+    (
+      label: 'Dasbor',
+      icon: Icons.dashboard_outlined,
+      page: PartnerDashboardPage(),
+    ),
+    (
+      label: 'Listing',
+      icon: Icons.format_list_bulleted,
+      page: PartnerListingsPage(),
+    ),
     (label: 'Verifikasi', icon: Icons.qr_code_scanner, page: CashierPage()),
-    (label: 'Pesanan', icon: Icons.receipt_long_outlined, page: PartnerOrdersPage()),
+    (
+      label: 'Pesanan',
+      icon: Icons.receipt_long_outlined,
+      page: PartnerOrdersPage(),
+    ),
     (label: 'Akun', icon: Icons.person_outline, page: LoginPage()),
   ],
   Role.admin: [
-    (label: 'Ringkasan', icon: Icons.space_dashboard_outlined, page: AdminSummaryPage()),
-    (label: 'Pendaftaran', icon: Icons.how_to_reg_outlined, page: PartnerApprovalPage()),
-    (label: 'Listing', icon: Icons.inventory_2_outlined, page: AdminListingsPage()),
+    (
+      label: 'Ringkasan',
+      icon: Icons.space_dashboard_outlined,
+      page: AdminSummaryPage(),
+    ),
+    (
+      label: 'Pendaftaran',
+      icon: Icons.how_to_reg_outlined,
+      page: PartnerApprovalPage(),
+    ),
+    (
+      label: 'Listing',
+      icon: Icons.inventory_2_outlined,
+      page: AdminListingsPage(),
+    ),
     (label: 'Laporan', icon: Icons.flag_outlined, page: AdminComplaintsPage()),
     (label: 'Log', icon: Icons.history, page: ModerationLogPage()),
   ],
@@ -62,7 +90,6 @@ class _RoleShell extends StatefulWidget {
   State<_RoleShell> createState() => _RoleShellState();
 }
 
-
 class _RoleShellState extends State<_RoleShell> {
   int _index = 0;
 
@@ -77,13 +104,19 @@ class _RoleShellState extends State<_RoleShell> {
           if (widget.role == Role.admin)
             IconButton(
               tooltip: 'Akun',
-              icon: const CircleAvatar(radius: 16, child: Icon(Icons.person, size: 18)),
+              icon: const CircleAvatar(
+                radius: 16,
+                child: Icon(Icons.person, size: 18),
+              ),
               onPressed: () => Navigator.pushNamed(context, AppRoutes.account),
             ),
         ],
       ),
       // IndexedStack menjaga state tiap tab (scroll, input) saat berpindah.
-      body: IndexedStack(index: _index, children: [for (final t in tabs) t.page]),
+      body: IndexedStack(
+        index: _index,
+        children: [for (final t in tabs) t.page],
+      ),
       bottomNavigationBar: BottomNav(
         tabs: [for (final t in tabs) (label: t.label, icon: t.icon)],
         index: _index,
@@ -101,7 +134,13 @@ typedef NavTab = ({String label, IconData icon});
 /// Bottom nav sesuai komponen Nav/Pembeli & Nav/Mitra di design.pen:
 /// kapsul primary-tint 12 membungkus ikon + label; opsional tombol bulat menonjol di tengah.
 class BottomNav extends StatelessWidget {
-  const BottomNav({super.key, required this.tabs, required this.index, required this.onTap, this.fabIndex});
+  const BottomNav({
+    super.key,
+    required this.tabs,
+    required this.index,
+    required this.onTap,
+    this.fabIndex,
+  });
 
   final List<NavTab> tabs;
   final int index;
@@ -116,7 +155,10 @@ class BottomNav extends StatelessWidget {
     final itemWidth = tabs.length > 3 ? 68.0 : 80.0;
     return Container(
       key: const Key('bottom-nav'),
-      decoration: BoxDecoration(color: c.surface, border: Border(top: BorderSide(color: c.divider))),
+      decoration: BoxDecoration(
+        color: c.surface,
+        border: Border(top: BorderSide(color: c.divider)),
+      ),
       child: SafeArea(
         top: false,
         child: Container(
@@ -129,7 +171,12 @@ class BottomNav extends StatelessWidget {
               for (final (i, t) in tabs.indexed)
                 i == fabIndex
                     ? _FabItem(tab: t, onTap: () => onTap(i))
-                    : _NavItem(tab: t, width: itemWidth, selected: i == index, onTap: () => onTap(i)),
+                    : _NavItem(
+                        tab: t,
+                        width: itemWidth,
+                        selected: i == index,
+                        onTap: () => onTap(i),
+                      ),
             ],
           ),
         ),
@@ -139,7 +186,12 @@ class BottomNav extends StatelessWidget {
 }
 
 class _NavItem extends StatelessWidget {
-  const _NavItem({required this.tab, required this.width, required this.selected, required this.onTap});
+  const _NavItem({
+    required this.tab,
+    required this.width,
+    required this.selected,
+    required this.onTap,
+  });
 
   final NavTab tab;
   final double width;
@@ -167,9 +219,15 @@ class _NavItem extends StatelessWidget {
               children: [
                 Icon(tab.icon, size: 24, color: fg),
                 const SizedBox(height: 2),
-                Text(tab.label,
-                    maxLines: 1,
-                    style: TextStyle(fontSize: 12, fontWeight: selected ? FontWeight.w700 : FontWeight.w500, color: fg)),
+                Text(
+                  tab.label,
+                  maxLines: 1,
+                  style: TextStyle(
+                    fontSize: 12,
+                    fontWeight: selected ? FontWeight.w700 : FontWeight.w500,
+                    color: fg,
+                  ),
+                ),
               ],
             ),
           ),
@@ -215,14 +273,26 @@ class _FabItem extends StatelessWidget {
                         color: c.primary,
                         shape: BoxShape.circle,
                         border: Border.all(color: c.surface, width: 4),
-                        boxShadow: const [BoxShadow(color: Color(0x2E14301F), offset: Offset(0, 4), blurRadius: 12)],
+                        boxShadow: const [
+                          BoxShadow(
+                            color: Color(0x2E14301F),
+                            offset: Offset(0, 4),
+                            blurRadius: 12,
+                          ),
+                        ],
                       ),
                       child: Icon(tab.icon, size: 28, color: c.onPrimary),
                     ),
                     const SizedBox(height: 4),
                     ExcludeSemantics(
-                      child: Text(tab.label,
-                          style: TextStyle(fontSize: 12, fontWeight: FontWeight.w700, color: c.text)),
+                      child: Text(
+                        tab.label,
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w700,
+                          color: c.text,
+                        ),
+                      ),
                     ),
                   ],
                 ),

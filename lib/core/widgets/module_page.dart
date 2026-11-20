@@ -33,11 +33,17 @@ class ModulePage extends StatelessWidget {
     final body = ListView(
       padding: const EdgeInsets.all(AppSpace.lg),
       children: [
-        Text('MODUL $module', style: t.labelSmall?.copyWith(color: muted, letterSpacing: 1)),
+        Text(
+          'MODUL $module',
+          style: t.labelSmall?.copyWith(color: muted, letterSpacing: 1),
+        ),
         const SizedBox(height: AppSpace.xs),
         Text(title, style: t.headlineSmall),
         const SizedBox(height: AppSpace.xs),
-        Text('Penanggung jawab: $owner', style: t.bodyMedium?.copyWith(color: muted)),
+        Text(
+          'Penanggung jawab: $owner',
+          style: t.bodyMedium?.copyWith(color: muted),
+        ),
         const SizedBox(height: AppSpace.xl),
         Card(
           child: Padding(
@@ -50,7 +56,13 @@ class ModulePage extends StatelessWidget {
                 for (final e in endpoints)
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 2),
-                    child: Text(e, style: AppText.mono.copyWith(fontSize: 13, fontWeight: FontWeight.w400)),
+                    child: Text(
+                      e,
+                      style: AppText.mono.copyWith(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
                   ),
               ],
             ),
@@ -59,6 +71,11 @@ class ModulePage extends StatelessWidget {
         ...children,
       ],
     );
-    return standalone ? Scaffold(appBar: AppBar(title: Text(title)), body: body) : body;
+    return standalone
+        ? Scaffold(
+            appBar: AppBar(title: Text(title)),
+            body: body,
+          )
+        : body;
   }
 }

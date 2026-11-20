@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 import '../../core/services/api_service.dart';
@@ -29,7 +30,8 @@ class _CatalogPageState extends State<CatalogPage> {
   // Filter & Sort State
   String _selectedCategory = 'Semua';
   bool _freeOnly = false;
-  String _sortBy = 'default'; // 'default', 'price_asc', 'discount_desc', 'urgent'
+  String _sortBy =
+      'default'; // 'default', 'price_asc', 'discount_desc', 'urgent'
 
   static const List<String> _categories = [
     'Semua',
@@ -89,13 +91,15 @@ class _CatalogPageState extends State<CatalogPage> {
 
     List<Listing> result = _allListings.where((item) {
       // Filter teks pencarian (nama makanan atau nama toko)
-      final matchQuery = query.isEmpty ||
+      final matchQuery =
+          query.isEmpty ||
           item.name.toLowerCase().contains(query) ||
           item.store.toLowerCase().contains(query) ||
           item.description.toLowerCase().contains(query);
 
       // Filter kategori
-      final matchCategory = _selectedCategory == 'Semua' ||
+      final matchCategory =
+          _selectedCategory == 'Semua' ||
           item.category.toLowerCase() == _selectedCategory.toLowerCase();
 
       // Filter donasi gratis
@@ -114,8 +118,10 @@ class _CatalogPageState extends State<CatalogPage> {
         break;
       case 'urgent':
         result.sort((a, b) {
-          final aEnd = a.pickupEnd ?? DateTime.now().add(const Duration(days: 1));
-          final bEnd = b.pickupEnd ?? DateTime.now().add(const Duration(days: 1));
+          final aEnd =
+              a.pickupEnd ?? DateTime.now().add(const Duration(days: 1));
+          final bEnd =
+              b.pickupEnd ?? DateTime.now().add(const Duration(days: 1));
           return aEnd.compareTo(bEnd);
         });
         break;
@@ -145,7 +151,9 @@ class _CatalogPageState extends State<CatalogPage> {
         return Container(
           decoration: BoxDecoration(
             color: c.surface,
-            borderRadius: const BorderRadius.vertical(top: Radius.circular(AppRadius.md)),
+            borderRadius: const BorderRadius.vertical(
+              top: Radius.circular(AppRadius.md),
+            ),
             boxShadow: AppShadow.e2,
           ),
           padding: const EdgeInsets.all(AppSpace.xl),
@@ -180,7 +188,11 @@ class _CatalogPageState extends State<CatalogPage> {
                           fit: BoxFit.cover,
                           errorBuilder: (_, _, _) => Container(
                             color: c.surface2,
-                            child: Icon(Icons.fastfood, size: 48, color: c.textMuted),
+                            child: Icon(
+                              Icons.fastfood,
+                              size: 48,
+                              color: c.textMuted,
+                            ),
                           ),
                         ),
                       ),
@@ -191,7 +203,10 @@ class _CatalogPageState extends State<CatalogPage> {
                   Row(
                     children: [
                       Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 10,
+                          vertical: 4,
+                        ),
                         decoration: BoxDecoration(
                           color: c.primaryTint,
                           borderRadius: BorderRadius.circular(AppRadius.pill),
@@ -217,7 +232,11 @@ class _CatalogPageState extends State<CatalogPage> {
                   const SizedBox(height: AppSpace.xs),
                   Row(
                     children: [
-                      Icon(Icons.storefront_outlined, size: 16, color: c.textMuted),
+                      Icon(
+                        Icons.storefront_outlined,
+                        size: 16,
+                        color: c.textMuted,
+                      ),
                       const SizedBox(width: 4),
                       Expanded(
                         child: Text(
@@ -234,7 +253,11 @@ class _CatalogPageState extends State<CatalogPage> {
                     const SizedBox(height: 2),
                     Row(
                       children: [
-                        Icon(Icons.place_outlined, size: 16, color: c.textMuted),
+                        Icon(
+                          Icons.place_outlined,
+                          size: 16,
+                          color: c.textMuted,
+                        ),
                         const SizedBox(width: 4),
                         Expanded(
                           child: Text(
@@ -254,7 +277,9 @@ class _CatalogPageState extends State<CatalogPage> {
                     crossAxisAlignment: WrapCrossAlignment.center,
                     children: [
                       Text(
-                        listing.isDonation ? 'Gratis (Donasi)' : rupiah(listing.price),
+                        listing.isDonation
+                            ? 'Gratis (Donasi)'
+                            : rupiah(listing.price),
                         style: AppText.mono.copyWith(
                           fontSize: 22,
                           fontWeight: FontWeight.w700,
@@ -272,7 +297,10 @@ class _CatalogPageState extends State<CatalogPage> {
                         ),
                       if (listing.discountPercent > 0)
                         Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 8,
+                            vertical: 2,
+                          ),
                           decoration: BoxDecoration(
                             color: c.primaryTint,
                             borderRadius: BorderRadius.circular(AppRadius.sm),
@@ -306,8 +334,10 @@ class _CatalogPageState extends State<CatalogPage> {
 
                   if (listing.allergens.isNotEmpty) ...[
                     const SizedBox(height: AppSpace.sm),
-                    Text('Alergen: ${listing.allergens}',
-                        style: t.bodySmall?.copyWith(color: c.error)),
+                    Text(
+                      'Alergen: ${listing.allergens}',
+                      style: t.bodySmall?.copyWith(color: c.error),
+                    ),
                   ],
 
                   const SizedBox(height: AppSpace.xl),
@@ -352,7 +382,12 @@ class _CatalogPageState extends State<CatalogPage> {
           children: [
             // Search Input Bar
             Padding(
-              padding: const EdgeInsets.fromLTRB(AppSpace.lg, AppSpace.md, AppSpace.lg, 0),
+              padding: const EdgeInsets.fromLTRB(
+                AppSpace.lg,
+                AppSpace.md,
+                AppSpace.lg,
+                0,
+              ),
               child: AppInput(
                 label: 'Katalog & Pencarian',
                 controller: _searchController,
@@ -374,7 +409,10 @@ class _CatalogPageState extends State<CatalogPage> {
             // Horizontal Chips Filter
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
-              padding: const EdgeInsets.symmetric(horizontal: AppSpace.lg, vertical: AppSpace.sm),
+              padding: const EdgeInsets.symmetric(
+                horizontal: AppSpace.lg,
+                vertical: AppSpace.sm,
+              ),
               child: Row(
                 children: [
                   for (final cat in _categories) ...[
@@ -408,7 +446,10 @@ class _CatalogPageState extends State<CatalogPage> {
 
             // Sort & Info Result Row
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: AppSpace.lg, vertical: 4),
+              padding: const EdgeInsets.symmetric(
+                horizontal: AppSpace.lg,
+                vertical: 4,
+              ),
               child: Row(
                 children: [
                   Text(
@@ -430,10 +471,22 @@ class _CatalogPageState extends State<CatalogPage> {
                       _applyFilters();
                     },
                     itemBuilder: (context) => const [
-                      PopupMenuItem(value: 'default', child: Text('Urutan Default')),
-                      PopupMenuItem(value: 'urgent', child: Text('Batas Ambil Terdekat')),
-                      PopupMenuItem(value: 'price_asc', child: Text('Harga Termurah')),
-                      PopupMenuItem(value: 'discount_desc', child: Text('Diskon Tertinggi')),
+                      PopupMenuItem(
+                        value: 'default',
+                        child: Text('Urutan Default'),
+                      ),
+                      PopupMenuItem(
+                        value: 'urgent',
+                        child: Text('Batas Ambil Terdekat'),
+                      ),
+                      PopupMenuItem(
+                        value: 'price_asc',
+                        child: Text('Harga Termurah'),
+                      ),
+                      PopupMenuItem(
+                        value: 'discount_desc',
+                        child: Text('Diskon Tertinggi'),
+                      ),
                     ],
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
@@ -462,9 +515,7 @@ class _CatalogPageState extends State<CatalogPage> {
             const Divider(height: 1),
 
             // Main Content Area
-            Expanded(
-              child: _buildBody(),
-            ),
+            Expanded(child: _buildBody()),
           ],
         ),
       ),
@@ -477,10 +528,7 @@ class _CatalogPageState extends State<CatalogPage> {
     }
 
     if (_errorMessage != null) {
-      return StateView.error(
-        message: _errorMessage,
-        onAction: _loadListings,
-      );
+      return StateView.error(message: _errorMessage, onAction: _loadListings);
     }
 
     if (_filteredListings.isEmpty) {

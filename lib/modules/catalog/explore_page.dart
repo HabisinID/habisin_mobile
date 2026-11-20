@@ -22,8 +22,16 @@ class _ExplorePageState extends State<ExplorePage> {
           padding: const EdgeInsets.fromLTRB(16, 12, 16, 0),
           child: SegmentedButton<bool>(
             segments: const [
-              ButtonSegment(value: true, icon: Icon(Icons.map_outlined), label: Text('Peta')),
-              ButtonSegment(value: false, icon: Icon(Icons.list), label: Text('Daftar')),
+              ButtonSegment(
+                value: true,
+                icon: Icon(Icons.map_outlined),
+                label: Text('Peta'),
+              ),
+              ButtonSegment(
+                value: false,
+                icon: Icon(Icons.list),
+                label: Text('Daftar'),
+              ),
             ],
             selected: {_showMap},
             onSelectionChanged: (s) => setState(() => _showMap = s.first),

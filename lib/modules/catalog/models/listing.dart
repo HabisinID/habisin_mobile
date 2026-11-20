@@ -37,15 +37,15 @@ class StoreSummary {
   }
 
   Map<String, dynamic> toJson() => {
-        'id': id,
-        'name': name,
-        'address': address,
-        'latitude': latitude,
-        'longitude': longitude,
-        'is_open': isOpen,
-        'landmark': landmark,
-        'profile_picture': profilePicture,
-      };
+    'id': id,
+    'name': name,
+    'address': address,
+    'latitude': latitude,
+    'longitude': longitude,
+    'is_open': isOpen,
+    'landmark': landmark,
+    'profile_picture': profilePicture,
+  };
 }
 
 class Listing {
@@ -154,7 +154,9 @@ class Listing {
       pickupEnd: parseDate(json['pickup_end']),
       active: json['active'] as bool? ?? true,
       storeId: json['store_id'] as int? ?? 0,
-      storeSummary: json['store_summary'] != null && json['store_summary'] is Map<String, dynamic>
+      storeSummary:
+          json['store_summary'] != null &&
+              json['store_summary'] is Map<String, dynamic>
           ? StoreSummary.fromJson(json['store_summary'] as Map<String, dynamic>)
           : null,
       packaging: json['packaging'] as String? ?? '',
@@ -165,26 +167,26 @@ class Listing {
   }
 
   Map<String, dynamic> toJson() => {
-        'id': id,
-        'name': name,
-        'store': store,
-        'category': category,
-        'description': description,
-        'address': address,
-        'price': price,
-        'original_price': originalPrice,
-        'stock': stock,
-        'image': image,
-        'latitude': latitude,
-        'longitude': longitude,
-        'pickup_start': pickupStart?.toIso8601String(),
-        'pickup_end': pickupEnd?.toIso8601String(),
-        'active': active,
-        'store_id': storeId,
-        'store_summary': storeSummary?.toJson(),
-        'packaging': packaging,
-        'allergens': allergens,
-        'buyer_notes': buyerNotes,
-        'taken_down': takenDown,
-      };
+    'id': id,
+    'name': name,
+    'store': store,
+    'category': category,
+    'description': description,
+    'address': address,
+    'price': price,
+    'original_price': originalPrice,
+    'stock': stock,
+    'image': image,
+    'latitude': latitude,
+    'longitude': longitude,
+    'pickup_start': pickupStart?.toIso8601String(),
+    'pickup_end': pickupEnd?.toIso8601String(),
+    'active': active,
+    'store_id': storeId,
+    'store_summary': storeSummary?.toJson(),
+    'packaging': packaging,
+    'allergens': allergens,
+    'buyer_notes': buyerNotes,
+    'taken_down': takenDown,
+  };
 }

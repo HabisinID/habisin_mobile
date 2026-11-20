@@ -100,14 +100,16 @@ class AppColors extends ThemeExtension<AppColors> {
     inverseAccent: Color(0xFF1F4D33),
   );
 
-  static AppColors of(BuildContext context) => Theme.of(context).extension<AppColors>()!;
+  static AppColors of(BuildContext context) =>
+      Theme.of(context).extension<AppColors>()!;
 
   @override
   AppColors copyWith() => this;
 
   // ponytail: tanpa interpolasi warna per field; pergantian tema langsung berganti palet.
   @override
-  AppColors lerp(AppColors? other, double t) => t < 0.5 || other == null ? this : other;
+  AppColors lerp(AppColors? other, double t) =>
+      t < 0.5 || other == null ? this : other;
 }
 
 /// Spacing 4pt. Padding layar 16 · item terkait 8–12 · antar blok 24 · antar section 32.
@@ -134,10 +136,14 @@ class AppRadius {
 /// Elevasi: hanya elemen melayang yang diberi bayangan; sisanya datar.
 class AppShadow {
   /// E1: sticky bar, ticket strip.
-  static const e1 = [BoxShadow(color: Color(0x141C2616), offset: Offset(0, -2), blurRadius: 8)];
+  static const e1 = [
+    BoxShadow(color: Color(0x141C2616), offset: Offset(0, -2), blurRadius: 8),
+  ];
 
   /// E2: bottom sheet, popup peta, marker terpilih.
-  static const e2 = [BoxShadow(color: Color(0x1F1C2616), offset: Offset(0, -4), blurRadius: 20)];
+  static const e2 = [
+    BoxShadow(color: Color(0x1F1C2616), offset: Offset(0, -4), blurRadius: 20),
+  ];
 }
 
 /// Gaya teks khusus. Warna tidak diset: ikut `DefaultTextStyle` (warna teks tema),
@@ -147,10 +153,19 @@ class AppText {
   static const fontMono = 'JetBrainsMono';
 
   /// Kode tiket & countdown besar: `H7K · 49`.
-  static const code = TextStyle(fontFamily: fontMono, fontSize: 32, fontWeight: FontWeight.w700, letterSpacing: 2);
+  static const code = TextStyle(
+    fontFamily: fontMono,
+    fontSize: 32,
+    fontWeight: FontWeight.w700,
+    letterSpacing: 2,
+  );
 
   /// Harga & jam: `Rp8.000`, `20.30`.
-  static const mono = TextStyle(fontFamily: fontMono, fontSize: 16, fontWeight: FontWeight.w600);
+  static const mono = TextStyle(
+    fontFamily: fontMono,
+    fontSize: 16,
+    fontWeight: FontWeight.w600,
+  );
 }
 
 class AppTheme {
@@ -159,22 +174,72 @@ class AppTheme {
 
   static ThemeData _build(AppColors c, Brightness brightness) {
     final textTheme = TextTheme(
-      displaySmall: TextStyle(fontSize: 32, fontWeight: FontWeight.w800, height: 1.2, color: c.text), // display
-      headlineSmall: TextStyle(fontSize: 24, fontWeight: FontWeight.w700, height: 1.2, color: c.text), // judul layar
-      titleLarge: TextStyle(fontSize: 20, fontWeight: FontWeight.w700, height: 1.2, color: c.text), // heading section
-      titleMedium: TextStyle(fontSize: 16, fontWeight: FontWeight.w700, height: 1.5, color: c.text), // judul list
-      bodyLarge: TextStyle(fontSize: 16, fontWeight: FontWeight.w400, height: 1.5, color: c.text), // body
-      bodyMedium: TextStyle(fontSize: 14, fontWeight: FontWeight.w400, height: 1.5, color: c.text), // body sekunder
-      bodySmall: TextStyle(fontSize: 12, fontWeight: FontWeight.w400, height: 1.5, color: c.textMuted), // meta
-      labelLarge: TextStyle(fontSize: 16, fontWeight: FontWeight.w700, color: c.text), // tombol
-      labelMedium: TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: c.text), // chip, label input
-      labelSmall: TextStyle(fontSize: 12, fontWeight: FontWeight.w600, color: c.text), // caption, label nav
+      displaySmall: TextStyle(
+        fontSize: 32,
+        fontWeight: FontWeight.w800,
+        height: 1.2,
+        color: c.text,
+      ), // display
+      headlineSmall: TextStyle(
+        fontSize: 24,
+        fontWeight: FontWeight.w700,
+        height: 1.2,
+        color: c.text,
+      ), // judul layar
+      titleLarge: TextStyle(
+        fontSize: 20,
+        fontWeight: FontWeight.w700,
+        height: 1.2,
+        color: c.text,
+      ), // heading section
+      titleMedium: TextStyle(
+        fontSize: 16,
+        fontWeight: FontWeight.w700,
+        height: 1.5,
+        color: c.text,
+      ), // judul list
+      bodyLarge: TextStyle(
+        fontSize: 16,
+        fontWeight: FontWeight.w400,
+        height: 1.5,
+        color: c.text,
+      ), // body
+      bodyMedium: TextStyle(
+        fontSize: 14,
+        fontWeight: FontWeight.w400,
+        height: 1.5,
+        color: c.text,
+      ), // body sekunder
+      bodySmall: TextStyle(
+        fontSize: 12,
+        fontWeight: FontWeight.w400,
+        height: 1.5,
+        color: c.textMuted,
+      ), // meta
+      labelLarge: TextStyle(
+        fontSize: 16,
+        fontWeight: FontWeight.w700,
+        color: c.text,
+      ), // tombol
+      labelMedium: TextStyle(
+        fontSize: 14,
+        fontWeight: FontWeight.w600,
+        color: c.text,
+      ), // chip, label input
+      labelSmall: TextStyle(
+        fontSize: 12,
+        fontWeight: FontWeight.w600,
+        color: c.text,
+      ), // caption, label nav
     );
 
-    final buttonShape = RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppRadius.md));
+    final buttonShape = RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(AppRadius.md),
+    );
     const buttonSize = Size(64, 48);
     const buttonPadding = EdgeInsets.symmetric(horizontal: 20);
-    OutlineInputBorder inputBorder(Color color, [double w = 1]) => OutlineInputBorder(
+    OutlineInputBorder inputBorder(Color color, [double w = 1]) =>
+        OutlineInputBorder(
           borderRadius: BorderRadius.circular(AppRadius.sm),
           borderSide: BorderSide(color: color, width: w),
         );
@@ -217,7 +282,12 @@ class AppTheme {
         scrolledUnderElevation: 0,
         centerTitle: false,
         toolbarHeight: 56,
-        titleTextStyle: TextStyle(fontFamily: AppText.fontUi, fontSize: 20, fontWeight: FontWeight.w700, color: c.text),
+        titleTextStyle: TextStyle(
+          fontFamily: AppText.fontUi,
+          fontSize: 20,
+          fontWeight: FontWeight.w700,
+          color: c.text,
+        ),
       ),
 
       // Btn/Primary
@@ -230,7 +300,11 @@ class AppTheme {
           minimumSize: buttonSize,
           padding: buttonPadding,
           shape: buttonShape,
-          textStyle: const TextStyle(fontFamily: AppText.fontUi, fontSize: 16, fontWeight: FontWeight.w700),
+          textStyle: const TextStyle(
+            fontFamily: AppText.fontUi,
+            fontSize: 16,
+            fontWeight: FontWeight.w700,
+          ),
         ),
       ),
       // Btn/Secondary
@@ -242,14 +316,22 @@ class AppTheme {
           padding: buttonPadding,
           shape: buttonShape,
           side: BorderSide(color: c.border),
-          textStyle: const TextStyle(fontFamily: AppText.fontUi, fontSize: 16, fontWeight: FontWeight.w600),
+          textStyle: const TextStyle(
+            fontFamily: AppText.fontUi,
+            fontSize: 16,
+            fontWeight: FontWeight.w600,
+          ),
         ),
       ),
       textButtonTheme: TextButtonThemeData(
         style: TextButton.styleFrom(
           foregroundColor: c.primary,
           minimumSize: const Size(AppSpace.touch, AppSpace.touch),
-          textStyle: const TextStyle(fontFamily: AppText.fontUi, fontSize: 14, fontWeight: FontWeight.w700),
+          textStyle: const TextStyle(
+            fontFamily: AppText.fontUi,
+            fontSize: 14,
+            fontWeight: FontWeight.w700,
+          ),
         ),
       ),
 
@@ -257,7 +339,10 @@ class AppTheme {
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
         fillColor: c.surface,
-        contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
+        contentPadding: const EdgeInsets.symmetric(
+          horizontal: 14,
+          vertical: 14,
+        ),
         hintStyle: TextStyle(color: c.textMuted),
         helperStyle: TextStyle(fontSize: 12, color: c.textMuted),
         errorStyle: TextStyle(fontSize: 12, color: c.error),
@@ -278,7 +363,12 @@ class AppTheme {
         side: BorderSide(color: c.border),
         shape: const StadiumBorder(),
         padding: const EdgeInsets.symmetric(horizontal: 6),
-        labelStyle: TextStyle(fontFamily: AppText.fontUi, fontSize: 14, fontWeight: FontWeight.w600, color: c.text),
+        labelStyle: TextStyle(
+          fontFamily: AppText.fontUi,
+          fontSize: 14,
+          fontWeight: FontWeight.w600,
+          color: c.text,
+        ),
       ),
 
       // Toggle (mis. Peta/Daftar, tab Aktif/Riwayat): terpilih = primary-tint.
@@ -289,7 +379,11 @@ class AppTheme {
           selectedBackgroundColor: c.primaryTint,
           selectedForegroundColor: c.primary,
           side: BorderSide(color: c.border),
-          textStyle: const TextStyle(fontFamily: AppText.fontUi, fontSize: 14, fontWeight: FontWeight.w600),
+          textStyle: const TextStyle(
+            fontFamily: AppText.fontUi,
+            fontSize: 14,
+            fontWeight: FontWeight.w600,
+          ),
         ),
       ),
 
@@ -303,27 +397,45 @@ class AppTheme {
           borderRadius: BorderRadius.circular(AppRadius.md),
         ),
       ),
-      listTileTheme: ListTileThemeData(iconColor: c.textMuted, textColor: c.text),
+      listTileTheme: ListTileThemeData(
+        iconColor: c.textMuted,
+        textColor: c.text,
+      ),
       bottomSheetTheme: BottomSheetThemeData(
         backgroundColor: c.surface,
         surfaceTintColor: Colors.transparent,
         showDragHandle: true,
         dragHandleColor: c.border,
-        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(AppRadius.md))),
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            top: Radius.circular(AppRadius.md),
+          ),
+        ),
       ),
       dialogTheme: DialogThemeData(
         backgroundColor: c.surface,
         surfaceTintColor: Colors.transparent,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppRadius.md)),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(AppRadius.md),
+        ),
       ),
       snackBarTheme: SnackBarThemeData(
         behavior: SnackBarBehavior.floating,
         backgroundColor: c.inverseSurface,
-        contentTextStyle: TextStyle(fontFamily: AppText.fontUi, fontSize: 14, color: c.onInverse),
+        contentTextStyle: TextStyle(
+          fontFamily: AppText.fontUi,
+          fontSize: 14,
+          color: c.onInverse,
+        ),
         actionTextColor: c.inverseAccent,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppRadius.sm)),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(AppRadius.sm),
+        ),
       ),
-      progressIndicatorTheme: ProgressIndicatorThemeData(color: c.primary, linearTrackColor: c.divider),
+      progressIndicatorTheme: ProgressIndicatorThemeData(
+        color: c.primary,
+        linearTrackColor: c.divider,
+      ),
     );
   }
 }

@@ -58,7 +58,9 @@ class _MapPageState extends State<MapPage> {
       if (mounted) {
         setState(() {
           // Hanya ambil listing yang memiliki koordinat valid (tidak 0.0)
-          _listings = data.where((item) => item.latitude != 0.0 && item.longitude != 0.0).toList();
+          _listings = data
+              .where((item) => item.latitude != 0.0 && item.longitude != 0.0)
+              .toList();
           _isLoading = false;
         });
       }
@@ -92,13 +94,20 @@ class _MapPageState extends State<MapPage> {
         final t = Theme.of(ctx).textTheme;
 
         // Ambil semua makanan yang dijual oleh toko yang sama untuk ditampilkan di bottom sheet
-        final storeListings =
-            _listings.where((item) => item.storeId == listing.storeId || item.store == listing.store).toList();
+        final storeListings = _listings
+            .where(
+              (item) =>
+                  item.storeId == listing.storeId ||
+                  item.store == listing.store,
+            )
+            .toList();
 
         return Container(
           decoration: BoxDecoration(
             color: c.surface,
-            borderRadius: const BorderRadius.vertical(top: Radius.circular(AppRadius.md)),
+            borderRadius: const BorderRadius.vertical(
+              top: Radius.circular(AppRadius.md),
+            ),
             boxShadow: AppShadow.e2,
           ),
           padding: const EdgeInsets.all(AppSpace.xl),
@@ -132,14 +141,23 @@ class _MapPageState extends State<MapPage> {
                           color: c.primaryTint,
                           borderRadius: BorderRadius.circular(AppRadius.sm),
                         ),
-                        child: Icon(Icons.storefront, color: c.primary, size: 24),
+                        child: Icon(
+                          Icons.storefront,
+                          color: c.primary,
+                          size: 24,
+                        ),
                       ),
                       const SizedBox(width: AppSpace.md),
                       Expanded(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(listing.store, style: t.titleMedium?.copyWith(fontWeight: FontWeight.w700)),
+                            Text(
+                              listing.store,
+                              style: t.titleMedium?.copyWith(
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
                             const SizedBox(height: 2),
                             Text(
                               listing.address,
@@ -152,7 +170,10 @@ class _MapPageState extends State<MapPage> {
                       ),
                       // Badge Status Buka Toko
                       Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 8,
+                          vertical: 3,
+                        ),
                         decoration: BoxDecoration(
                           color: c.primaryTint,
                           borderRadius: BorderRadius.circular(AppRadius.pill),
@@ -197,13 +218,22 @@ class _MapPageState extends State<MapPage> {
                               width: 48,
                               height: 48,
                               color: c.surface2,
-                              child: food.image != null && food.image!.isNotEmpty
+                              child:
+                                  food.image != null && food.image!.isNotEmpty
                                   ? Image.network(
                                       food.image!,
                                       fit: BoxFit.cover,
-                                      errorBuilder: (_, _, _) => Icon(Icons.fastfood, size: 20, color: c.textMuted),
+                                      errorBuilder: (_, _, _) => Icon(
+                                        Icons.fastfood,
+                                        size: 20,
+                                        color: c.textMuted,
+                                      ),
                                     )
-                                  : Icon(Icons.fastfood, size: 20, color: c.textMuted),
+                                  : Icon(
+                                      Icons.fastfood,
+                                      size: 20,
+                                      color: c.textMuted,
+                                    ),
                             ),
                           ),
                           const SizedBox(width: AppSpace.md),
@@ -213,17 +243,24 @@ class _MapPageState extends State<MapPage> {
                               children: [
                                 Text(
                                   food.name,
-                                  style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w700),
+                                  style: const TextStyle(
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.w700,
+                                  ),
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
                                 ),
                                 const SizedBox(height: 2),
                                 Text(
-                                  food.isDonation ? 'Gratis (Donasi)' : rupiah(food.price),
+                                  food.isDonation
+                                      ? 'Gratis (Donasi)'
+                                      : rupiah(food.price),
                                   style: AppText.mono.copyWith(
                                     fontSize: 12,
                                     fontWeight: FontWeight.w700,
-                                    color: food.isDonation ? c.success : c.primary,
+                                    color: food.isDonation
+                                        ? c.success
+                                        : c.primary,
                                   ),
                                 ),
                               ],
@@ -231,7 +268,11 @@ class _MapPageState extends State<MapPage> {
                           ),
                           Text(
                             'Sisa ${food.stock}',
-                            style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600, color: c.textMuted),
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w600,
+                              color: c.textMuted,
+                            ),
                           ),
                         ],
                       ),
@@ -316,7 +357,10 @@ class _MapPageState extends State<MapPage> {
                       child: GestureDetector(
                         onTap: () {
                           // Pindahkan fokus kamera peta ke titik toko yang diklik
-                          _mapController.move(LatLng(item.latitude, item.longitude), 15.5);
+                          _mapController.move(
+                            LatLng(item.latitude, item.longitude),
+                            15.5,
+                          );
                           // Tampilkan modal ringkasan toko
                           _showStoreSummarySheet(item);
                         },
@@ -337,7 +381,10 @@ class _MapPageState extends State<MapPage> {
             left: AppSpace.md,
             right: AppSpace.md,
             child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: AppSpace.md, vertical: AppSpace.sm),
+              padding: const EdgeInsets.symmetric(
+                horizontal: AppSpace.md,
+                vertical: AppSpace.sm,
+              ),
               decoration: BoxDecoration(
                 color: c.surface,
                 borderRadius: BorderRadius.circular(AppRadius.md),
@@ -360,7 +407,10 @@ class _MapPageState extends State<MapPage> {
                   const Spacer(),
                   // Badge jumlah toko ditemukan
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 8,
+                      vertical: 2,
+                    ),
                     decoration: BoxDecoration(
                       color: c.primaryTint,
                       borderRadius: BorderRadius.circular(AppRadius.pill),
@@ -387,7 +437,10 @@ class _MapPageState extends State<MapPage> {
               right: 0,
               child: Center(
                 child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 8,
+                  ),
                   decoration: BoxDecoration(
                     color: c.surface,
                     borderRadius: BorderRadius.circular(AppRadius.pill),
@@ -398,10 +451,16 @@ class _MapPageState extends State<MapPage> {
                     children: [
                       SizedBox.square(
                         dimension: 16,
-                        child: CircularProgressIndicator(strokeWidth: 2, color: c.primary),
+                        child: CircularProgressIndicator(
+                          strokeWidth: 2,
+                          color: c.primary,
+                        ),
                       ),
                       const SizedBox(width: 8),
-                      Text('Memuat titik toko...', style: TextStyle(fontSize: 12, color: c.textMuted)),
+                      Text(
+                        'Memuat titik toko...',
+                        style: TextStyle(fontSize: 12, color: c.textMuted),
+                      ),
                     ],
                   ),
                 ),
