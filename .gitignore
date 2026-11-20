@@ -46,3 +46,34 @@ app.*.map.json
 
 # Widget Preview related
 .widget_preview/
+
+# ==============================================================================
+# AI Agents, Assistants, Models, and Skills (Antigravity, Gemini, Cursor, Claude, etc.)
+# ==============================================================================
+.agents/
+.agent/
+_agents/
+_agent/
+.gemini/
+GEMINI.md
+AGENTS.md
+skills/
+.skills/
+agentic-awesome-skills/
+antigravity-awesome-skills/
+.antigravity-install-manifest.json
+aas-stack.json
+.claude/
+.claude-plugin/
+CLAUDE.md
+.cursor/
+.cursorrules
+.cursorignore
+.windsurf/
+.windsurfrules
+.clinerules
+.roo/
+.roomodes
+.copilot/
+.github/copilot-instructions.md
+
