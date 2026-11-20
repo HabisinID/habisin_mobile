@@ -9,7 +9,7 @@ Aplikasi mobile (Flutter) dari **HABISIN**, versi mobile dari [proyek tengah sem
 | Repositori web (PTS) | https://github.com/HabisinID/habisin |
 | Backend Django (PWS) | https://rozan-laudzai-habisin-backend.pws.cs.ui.ac.id |
 | Situs web | https://habisin-id.vercel.app |
-| Desain Figma | `[TODO: tautan Figma]` |
+| Desain Figma | https://drive.google.com/file/d/1AQWbiHPUj_Jt5dp4DpWf7CY2l5TZgpHo/view?usp=sharing |
 | Unduh APK | `[TODO: tautan APK — diisi setelah Checkpoint 1]` |
 
 ---
