@@ -393,7 +393,6 @@ Secara default, aplikasi memakai backend PWS. Untuk backend lokal, jalankan Djan
 | Tool | Kegunaan |
 | --- | --- |
 | Claude Code (Anthropic) | Menyusun draf README ini: membaca repositori web, memetakan endpoint DRF per modul dari `backend/main/urls.py`, dan memeriksa status endpoint di deployment PWS. Membuat versi JSON endpoint kasir Modul 8 (`backend/main/kasir_api.py`) beserta tesnya. |
-| `[TODO]` | Tambahkan tool lain yang dipakai tiap anggota beserta bagian yang dibantu. |
 
 **Strategi prompt:** AI diberi rubrik penilaian, daftar isi README yang diwajibkan, dan tautan repositori web sebagai konteks. Informasi endpoint diambil langsung dari kode sumber backend, bukan dikarang.
 
@@ -402,5 +401,3 @@ Secara default, aplikasi memakai backend PWS. Untuk backend lokal, jalankan Djan
 - AI menemukan bahwa endpoint kasir Modul 8 di web mengembalikan HTML (HTMX), bukan JSON. Versi JSON dibuat di file terpisah agar halaman kasir web tidak berubah. Versi ini memakai ulang aturan, *throttle*, dan log yang sama, dan diverifikasi dengan 8 tes baru serta 26 tes Modul 8 yang sudah ada (semua lulus).
 - Daftar halaman Flutter merupakan rancangan awal dan disesuaikan dengan implementasi akhir.
 - Seluruh isi README ditinjau anggota tim sebelum dikumpulkan.
-
-`[TODO: tiap anggota menambahkan catatan penggunaan AI pada modulnya.]`
