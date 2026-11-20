@@ -80,7 +80,9 @@ class _PartnerListingsPageState extends State<PartnerListingsPage> {
         if (!mounted) return;
         messenger.showSnackBar(
           SnackBar(
-            content: Text('Status "${item.name}" berhasil dipulihkan menjadi aktif.'),
+            content: Text(
+              'Status "${item.name}" berhasil dipulihkan menjadi aktif.',
+            ),
             behavior: SnackBarBehavior.floating,
           ),
         );
@@ -101,7 +103,9 @@ class _PartnerListingsPageState extends State<PartnerListingsPage> {
       if (!mounted) return;
       messenger.showSnackBar(
         SnackBar(
-          content: Text('Gagal mengubah status: ${e.toString().replaceAll('Exception: ', '')}'),
+          content: Text(
+            'Gagal mengubah status: ${e.toString().replaceAll('Exception: ', '')}',
+          ),
           backgroundColor: errorColor,
           behavior: SnackBarBehavior.floating,
         ),
@@ -157,7 +161,9 @@ class _PartnerListingsPageState extends State<PartnerListingsPage> {
         if (!mounted) return;
         messenger.showSnackBar(
           SnackBar(
-            content: Text('Gagal menghapus: ${e.toString().replaceAll('Exception: ', '')}'),
+            content: Text(
+              'Gagal menghapus: ${e.toString().replaceAll('Exception: ', '')}',
+            ),
             backgroundColor: errorColor,
             behavior: SnackBarBehavior.floating,
           ),
@@ -176,17 +182,30 @@ class _PartnerListingsPageState extends State<PartnerListingsPage> {
     final formKey = GlobalKey<FormState>();
 
     // Controller input teks dengan nilai awal sesuai data yang sedang diedit (jika ada)
-    final nameController = TextEditingController(text: existingItem?.name ?? '');
-    final categoryController = TextEditingController(text: existingItem?.category ?? 'Roti & kue');
-    final descController = TextEditingController(text: existingItem?.description ?? '');
-    final normalPriceController =
-        TextEditingController(text: existingItem != null ? existingItem.originalPrice.toString() : '');
-    final priceController =
-        TextEditingController(text: existingItem != null ? existingItem.price.toString() : '0');
-    final stockController =
-        TextEditingController(text: existingItem != null ? existingItem.stock.toString() : '5');
-    final imageController = TextEditingController(text: existingItem?.image ?? '');
-    final allergensController = TextEditingController(text: existingItem?.allergens ?? '');
+    final nameController = TextEditingController(
+      text: existingItem?.name ?? '',
+    );
+    final categoryController = TextEditingController(
+      text: existingItem?.category ?? 'Roti & kue',
+    );
+    final descController = TextEditingController(
+      text: existingItem?.description ?? '',
+    );
+    final normalPriceController = TextEditingController(
+      text: existingItem != null ? existingItem.originalPrice.toString() : '',
+    );
+    final priceController = TextEditingController(
+      text: existingItem != null ? existingItem.price.toString() : '0',
+    );
+    final stockController = TextEditingController(
+      text: existingItem != null ? existingItem.stock.toString() : '5',
+    );
+    final imageController = TextEditingController(
+      text: existingItem?.image ?? '',
+    );
+    final allergensController = TextEditingController(
+      text: existingItem?.allergens ?? '',
+    );
 
     bool isSubmitting = false;
 
@@ -203,7 +222,9 @@ class _PartnerListingsPageState extends State<PartnerListingsPage> {
             return Container(
               decoration: BoxDecoration(
                 color: c.surface,
-                borderRadius: const BorderRadius.vertical(top: Radius.circular(AppRadius.md)),
+                borderRadius: const BorderRadius.vertical(
+                  top: Radius.circular(AppRadius.md),
+                ),
                 boxShadow: AppShadow.e2,
               ),
               padding: EdgeInsets.fromLTRB(
@@ -235,7 +256,9 @@ class _PartnerListingsPageState extends State<PartnerListingsPage> {
 
                       // Judul Modal Form
                       Text(
-                        isEditing ? 'Edit Makanan Surplus' : 'Tambah Makanan Surplus Baru',
+                        isEditing
+                            ? 'Edit Makanan Surplus'
+                            : 'Tambah Makanan Surplus Baru',
                         style: t.titleLarge,
                       ),
                       const SizedBox(height: AppSpace.xs),
@@ -251,8 +274,12 @@ class _PartnerListingsPageState extends State<PartnerListingsPage> {
                         controller: nameController,
                         hint: 'Contoh: Roti Manis Cokelat Sisa Siang',
                         validator: (v) {
-                          if (v == null || v.trim().isEmpty) return 'Nama makanan wajib diisi';
-                          if (v.trim().length > 60) return 'Maksimal 60 karakter';
+                          if (v == null || v.trim().isEmpty) {
+                            return 'Nama makanan wajib diisi';
+                          }
+                          if (v.trim().length > 60) {
+                            return 'Maksimal 60 karakter';
+                          }
                           return null;
                         },
                       ),
@@ -260,8 +287,13 @@ class _PartnerListingsPageState extends State<PartnerListingsPage> {
 
                       // 2. Dropdown Pilihan Kategori Makanan
                       DropdownButtonFormField<String>(
-                        initialValue: ['Roti & kue', 'Nasi & lauk', 'Minuman', 'Camilan']
-                                .contains(categoryController.text)
+                        initialValue:
+                            [
+                              'Roti & kue',
+                              'Nasi & lauk',
+                              'Minuman',
+                              'Camilan',
+                            ].contains(categoryController.text)
                             ? categoryController.text
                             : 'Roti & kue',
                         decoration: InputDecoration(
@@ -269,13 +301,27 @@ class _PartnerListingsPageState extends State<PartnerListingsPage> {
                           labelStyle: t.labelMedium,
                         ),
                         items: const [
-                          DropdownMenuItem(value: 'Roti & kue', child: Text('Roti & kue')),
-                          DropdownMenuItem(value: 'Nasi & lauk', child: Text('Nasi & lauk')),
-                          DropdownMenuItem(value: 'Minuman', child: Text('Minuman')),
-                          DropdownMenuItem(value: 'Camilan', child: Text('Camilan')),
+                          DropdownMenuItem(
+                            value: 'Roti & kue',
+                            child: Text('Roti & kue'),
+                          ),
+                          DropdownMenuItem(
+                            value: 'Nasi & lauk',
+                            child: Text('Nasi & lauk'),
+                          ),
+                          DropdownMenuItem(
+                            value: 'Minuman',
+                            child: Text('Minuman'),
+                          ),
+                          DropdownMenuItem(
+                            value: 'Camilan',
+                            child: Text('Camilan'),
+                          ),
                         ],
                         onChanged: (val) {
-                          if (val != null) categoryController.text = val;
+                          if (val != null) {
+                            categoryController.text = val;
+                          }
                         },
                       ),
                       const SizedBox(height: AppSpace.md),
@@ -291,7 +337,9 @@ class _PartnerListingsPageState extends State<PartnerListingsPage> {
                               hint: '20000',
                               validator: (v) {
                                 final n = int.tryParse(v ?? '');
-                                if (n == null || n < 0) return 'Nominal tidak valid';
+                                if (n == null || n < 0) {
+                                  return 'Nominal tidak valid';
+                                }
                                 return null;
                               },
                             ),
@@ -305,9 +353,15 @@ class _PartnerListingsPageState extends State<PartnerListingsPage> {
                               hint: '0 = Donasi',
                               validator: (v) {
                                 final p = int.tryParse(v ?? '');
-                                final n = int.tryParse(normalPriceController.text) ?? 0;
-                                if (p == null || p < 0) return 'Nominal tidak valid';
-                                if (n > 0 && p > n) return 'Melebihi harga normal';
+                                final n =
+                                    int.tryParse(normalPriceController.text) ??
+                                    0;
+                                if (p == null || p < 0) {
+                                  return 'Nominal tidak valid';
+                                }
+                                if (n > 0 && p > n) {
+                                  return 'Melebihi harga normal';
+                                }
                                 return null;
                               },
                             ),
@@ -324,7 +378,9 @@ class _PartnerListingsPageState extends State<PartnerListingsPage> {
                         hint: 'Jumlah porsi (misal 5)',
                         validator: (v) {
                           final s = int.tryParse(v ?? '');
-                          if (s == null || s < 1) return 'Stok minimal 1 porsi';
+                          if (s == null || s < 1) {
+                            return 'Stok minimal 1 porsi';
+                          }
                           return null;
                         },
                       ),
@@ -374,44 +430,64 @@ class _PartnerListingsPageState extends State<PartnerListingsPage> {
                                     'category': categoryController.text.trim(),
                                     'description': descController.text.trim(),
                                     'original_price':
-                                        int.tryParse(normalPriceController.text) ?? 0,
-                                    'price': int.tryParse(priceController.text) ?? 0,
-                                    'stock': int.tryParse(stockController.text) ?? 1,
-                                    'image': imageController.text.trim().isNotEmpty
+                                        int.tryParse(
+                                          normalPriceController.text,
+                                        ) ??
+                                        0,
+                                    'price':
+                                        int.tryParse(priceController.text) ?? 0,
+                                    'stock':
+                                        int.tryParse(stockController.text) ?? 1,
+                                    'image':
+                                        imageController.text.trim().isNotEmpty
                                         ? imageController.text.trim()
                                         : null,
-                                    'allergens': allergensController.text.trim(),
+                                    'allergens': allergensController.text
+                                        .trim(),
                                     'active': true,
                                     // Rentang waktu pengambilan: mulai saat ini s/d 4 jam ke depan
-                                    'pickup_start': DateTime.now().toIso8601String(),
+                                    'pickup_start': DateTime.now()
+                                        .toIso8601String(),
                                     'pickup_end': DateTime.now()
                                         .add(const Duration(hours: 4))
                                         .toIso8601String(),
                                   };
 
-                                  final messenger = ScaffoldMessenger.of(context);
+                                  final messenger = ScaffoldMessenger.of(
+                                    context,
+                                  );
                                   try {
                                     if (isEditing) {
                                       // Request PATCH ke /api/partner/listings/<id>
                                       await ApiService.instance
-                                          .updatePartnerListing(existingItem.id, payload);
+                                          .updatePartnerListing(
+                                            existingItem.id,
+                                            payload,
+                                          );
                                       messenger.showSnackBar(
                                         const SnackBar(
-                                          content: Text('Listing berhasil diperbarui!'),
+                                          content: Text(
+                                            'Listing berhasil diperbarui!',
+                                          ),
                                           behavior: SnackBarBehavior.floating,
                                         ),
                                       );
                                     } else {
                                       // Request POST ke /api/partner/listings
-                                      await ApiService.instance.createPartnerListing(payload);
+                                      await ApiService.instance
+                                          .createPartnerListing(payload);
                                       messenger.showSnackBar(
                                         const SnackBar(
-                                          content: Text('Makanan surplus baru berhasil ditambahkan!'),
+                                          content: Text(
+                                            'Makanan surplus baru berhasil ditambahkan!',
+                                          ),
                                           behavior: SnackBarBehavior.floating,
                                         ),
                                       );
                                     }
-                                    if (context.mounted) Navigator.pop(sheetCtx);
+                                    if (context.mounted) {
+                                      Navigator.pop(sheetCtx);
+                                    }
                                     // Refresh data inventaris
                                     _loadListings();
                                   } catch (e) {
@@ -452,7 +528,12 @@ class _PartnerListingsPageState extends State<PartnerListingsPage> {
           children: [
             // Baris Judul & Tombol Tambah
             Padding(
-              padding: const EdgeInsets.fromLTRB(AppSpace.lg, AppSpace.lg, AppSpace.lg, AppSpace.sm),
+              padding: const EdgeInsets.fromLTRB(
+                AppSpace.lg,
+                AppSpace.lg,
+                AppSpace.lg,
+                AppSpace.sm,
+              ),
               child: Row(
                 children: [
                   Column(
@@ -461,9 +542,8 @@ class _PartnerListingsPageState extends State<PartnerListingsPage> {
                       // Judul 'Kelola Listing' (wajib untuk memenuhi ekspektasi widget test)
                       Text(
                         'Kelola Listing',
-                        style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                              fontWeight: FontWeight.w700,
-                            ),
+                        style: Theme.of(context).textTheme.titleLarge
+                            ?.copyWith(fontWeight: FontWeight.w700),
                       ),
                       const SizedBox(height: 2),
                       Text(
@@ -492,9 +572,7 @@ class _PartnerListingsPageState extends State<PartnerListingsPage> {
             const Divider(height: 1),
 
             // Kontainer Utama Daftar Inventaris
-            Expanded(
-              child: _buildBody(),
-            ),
+            Expanded(child: _buildBody()),
           ],
         ),
       ),
@@ -513,10 +591,7 @@ class _PartnerListingsPageState extends State<PartnerListingsPage> {
 
     // 2. Kondisi jika terjadi error jaringan atau server
     if (_errorMessage != null) {
-      return StateView.error(
-        message: _errorMessage,
-        onAction: _loadListings,
-      );
+      return StateView.error(message: _errorMessage, onAction: _loadListings);
     }
 
     // 3. Kondisi jika toko mitra belum memiliki listing
@@ -532,7 +607,12 @@ class _PartnerListingsPageState extends State<PartnerListingsPage> {
 
     // 4. Kondisi sukses: Tampilkan daftar kartu inventaris produk
     return ListView.separated(
-      padding: const EdgeInsets.fromLTRB(AppSpace.lg, AppSpace.md, AppSpace.lg, AppSpace.xxl),
+      padding: const EdgeInsets.fromLTRB(
+        AppSpace.lg,
+        AppSpace.md,
+        AppSpace.lg,
+        AppSpace.xxl,
+      ),
       itemCount: _listings.length,
       separatorBuilder: (_, _) => const SizedBox(height: AppSpace.md),
       itemBuilder: (context, index) {
@@ -543,7 +623,9 @@ class _PartnerListingsPageState extends State<PartnerListingsPage> {
           elevation: 0,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(AppRadius.md),
-            side: BorderSide(color: isSoldOut ? c.divider : c.border.withValues(alpha: 0.5)),
+            side: BorderSide(
+              color: isSoldOut ? c.divider : c.border.withValues(alpha: 0.5),
+            ),
           ),
           color: isSoldOut ? c.surface2.withValues(alpha: 0.5) : c.surface,
           child: Padding(
@@ -582,13 +664,22 @@ class _PartnerListingsPageState extends State<PartnerListingsPage> {
                             children: [
                               // Badge Stok / Status Habis
                               Container(
-                                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 8,
+                                  vertical: 2,
+                                ),
                                 decoration: BoxDecoration(
-                                  color: isSoldOut ? c.errorTint : c.primaryTint,
-                                  borderRadius: BorderRadius.circular(AppRadius.sm),
+                                  color: isSoldOut
+                                      ? c.errorTint
+                                      : c.primaryTint,
+                                  borderRadius: BorderRadius.circular(
+                                    AppRadius.sm,
+                                  ),
                                 ),
                                 child: Text(
-                                  isSoldOut ? 'Habis (Sold Out)' : 'Tersedia: ${item.stock} porsi',
+                                  isSoldOut
+                                      ? 'Habis (Sold Out)'
+                                      : 'Tersedia: ${item.stock} porsi',
                                   style: TextStyle(
                                     fontSize: 11,
                                     fontWeight: FontWeight.w700,
@@ -599,7 +690,11 @@ class _PartnerListingsPageState extends State<PartnerListingsPage> {
                               const Spacer(),
                               // Menu Opsi Lainnya (Edit, Toggle, Hapus)
                               PopupMenuButton<String>(
-                                icon: Icon(Icons.more_vert, size: 20, color: c.textMuted),
+                                icon: Icon(
+                                  Icons.more_vert,
+                                  size: 20,
+                                  color: c.textMuted,
+                                ),
                                 onSelected: (action) {
                                   if (action == 'edit') {
                                     _showFormDialog(existingItem: item);
@@ -631,7 +726,11 @@ class _PartnerListingsPageState extends State<PartnerListingsPage> {
                                           size: 18,
                                         ),
                                         SizedBox(width: 8),
-                                        Text(isSoldOut ? 'Batalkan Habis' : 'Tandai Habis'),
+                                        Text(
+                                          isSoldOut
+                                              ? 'Batalkan Habis'
+                                              : 'Tandai Habis',
+                                        ),
                                       ],
                                     ),
                                   ),
@@ -639,9 +738,16 @@ class _PartnerListingsPageState extends State<PartnerListingsPage> {
                                     value: 'delete',
                                     child: Row(
                                       children: [
-                                        Icon(Icons.delete_outline, size: 18, color: c.error),
+                                        Icon(
+                                          Icons.delete_outline,
+                                          size: 18,
+                                          color: c.error,
+                                        ),
                                         const SizedBox(width: 8),
-                                        Text('Hapus', style: TextStyle(color: c.error)),
+                                        Text(
+                                          'Hapus',
+                                          style: TextStyle(color: c.error),
+                                        ),
                                       ],
                                     ),
                                   ),
@@ -654,7 +760,9 @@ class _PartnerListingsPageState extends State<PartnerListingsPage> {
                             item.name,
                             style: t.titleMedium?.copyWith(
                               fontWeight: FontWeight.w700,
-                              decoration: isSoldOut ? TextDecoration.lineThrough : null,
+                              decoration: isSoldOut
+                                  ? TextDecoration.lineThrough
+                                  : null,
                             ),
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
@@ -678,7 +786,9 @@ class _PartnerListingsPageState extends State<PartnerListingsPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          item.isDonation ? 'Donasi Gratis' : rupiah(item.price),
+                          item.isDonation
+                              ? 'Donasi Gratis'
+                              : rupiah(item.price),
                           style: AppText.mono.copyWith(
                             fontSize: 16,
                             fontWeight: FontWeight.w700,
@@ -701,10 +811,14 @@ class _PartnerListingsPageState extends State<PartnerListingsPage> {
                     OutlinedButton.icon(
                       style: OutlinedButton.styleFrom(
                         visualDensity: VisualDensity.compact,
-                        side: BorderSide(color: isSoldOut ? c.primary : c.urgency),
+                        side: BorderSide(
+                          color: isSoldOut ? c.primary : c.urgency,
+                        ),
                       ),
                       icon: Icon(
-                        isSoldOut ? Icons.check_circle_outline : Icons.highlight_off,
+                        isSoldOut
+                            ? Icons.check_circle_outline
+                            : Icons.highlight_off,
                         size: 16,
                         color: isSoldOut ? c.primary : c.urgency,
                       ),
